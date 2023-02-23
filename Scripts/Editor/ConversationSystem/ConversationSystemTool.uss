@@ -1,0 +1,42 @@
+.convdata-view {
+    border-radius: 5px;
+    margin-top: 3px;
+    flex-direction: row;
+}
+
+.convdata-view1 {
+    border-radius: 5px;
+    margin-top: 3px;
+    flex-direction: row;
+    background-color: cornflowerblue;
+}
+
+.convdata-view2 {
+    border-radius: 5px;
+    margin-top: 3px;
+    flex-direction: row;
+    background-color: cadetblue;
+}
+
+.text-field {
+    flex-direction: column;
+    flex-grow:1;
+}
+
+.id-label {
+    color: black;
+    -unity-font-style: bold;
+    min-width: 50px;
+}
+
+.name-label {
+    color: black;
+    -unity-font-style: bold;
+    min-width: 50px;
+}
+
+.line-label {
+    color: black;
+    -unity-font-style: bold;
+    min-width: 50px;
+}
