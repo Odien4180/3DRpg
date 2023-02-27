@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -27,20 +28,22 @@ public class Indicator : MonoBehaviour
 
         if (mat == null)
             mat = projector.material;
-
-        Initialize(new Vector3(11, 3, 20), 5, 10, new Vector3(90, 0, 180), 3.0f);
     }
 
-    public void Initialize(Vector3 position, float size, float depth, Vector3 rotation, float duration)
+    public void Initialize(Vector3 position, float size, float depth, Vector3 rotation, float duration, Action onComplete = null)
     {
-        Initialize(position, size, depth, Quaternion.Euler(rotation), duration);
+        Initialize(position, size, depth, Quaternion.Euler(rotation), duration, onComplete);
     }
 
-    public void Initialize(Vector3 position, float size, float depth, Quaternion rotation, float duration)
+    public void Initialize(Vector3 position, float size, float depth, Quaternion rotation, float duration, Action onComplete = null)
     {
         transform.position = position;
         projector.size = new Vector3(size, size, depth);
         mat.SetFloat("_Fill", 0.0f);
-        mat.DOFloat(1.0f, "_Fill", duration);
+        mat.DOFloat(1.0f, "_Fill", duration)
+            .OnComplete(() => { 
+                onComplete?.Invoke();
+                ObjectPoolManager.Instance.Push(gameObject);
+            });
     }
 }

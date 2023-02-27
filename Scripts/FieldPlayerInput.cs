@@ -15,9 +15,6 @@ public class FieldPlayerInput : MonoBehaviour
     [Header("Attack")]
     public bool mainAttack;
 
-    [Header("Interaction")]
-    public bool interaction;
-
     [Header("Mouse Cursor Settings")]
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
@@ -58,6 +55,11 @@ public class FieldPlayerInput : MonoBehaviour
     public void OnInteraction(InputValue value)
     {
         Interaction(value.isPressed);
+    }
+
+    public void OnInventory(InputValue value)
+    {
+        Inventory(value.isPressed);
     }
 #endif
 
@@ -103,16 +105,24 @@ public class FieldPlayerInput : MonoBehaviour
 
     private void Interaction(bool newInteraction)
     {
-        interaction = newInteraction;
+        CCHGameManager.Instance.currentCharacter.Value?.Interaction();
 #if UNITY_EDITOR
-        if (debugging) Debug.Log($"OnInteraction : {interaction}");
+        if (debugging) Debug.Log("OnInteraction");
 #endif
     }
 
-    private void OnApplicationFocus(bool hasFocus)
+    private void Inventory(bool newInventory)
     {
-        SetCursorState(cursorLocked);
+        CCHGameManager.Instance.PopInventory();
+#if UNITY_EDITOR
+        if (debugging) Debug.Log("Inventory");
+#endif
     }
+
+    //private void OnApplicationFocus(bool hasFocus)
+    //{
+    //    SetCursorState(cursorLocked);
+    //}
 
     private void SetCursorState(bool newState)
     {

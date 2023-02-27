@@ -12,7 +12,7 @@ public class ConversationManager : Singleton<ConversationManager>
     public bool IsEnd { get => isEnd; set => isEnd = value; }
     public async UniTask Initialize(string conversationName)
     {
-        CCHGameManager.Instance.SwitchActionMap("Conversation");
+        CCHGameManager.Instance.SwitchActionMap("UI");
 
         if (timelineHelper == null)
         {

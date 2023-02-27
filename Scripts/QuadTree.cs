@@ -79,6 +79,9 @@ public class QuadNode : IDisposable
     private float tz;
     public float TopZ => tz;
 
+    private Vector2 center;
+    public Vector2 Center => center;
+
     private bool leaf = false;
     
 
@@ -94,6 +97,8 @@ public class QuadNode : IDisposable
         rx = x + nodeSize;
         bz = z;
         tz = z + nodeSize;
+
+        center = new Vector2((lx + rx) / 2, (bz + tz) / 2);
 
         this.maxUnit = maxUnit;
         this.index = index;

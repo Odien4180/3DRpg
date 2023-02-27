@@ -5,7 +5,6 @@ using UnityEngine;
 public class State_Player_GroundCheck : CCHStateBase
 {
     private PlayerCharacterController owner;
-    private float waterDuration = 0.0f;
 
     private void Awake()
     {

@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,6 +106,7 @@ public class QuadMapUnit : MonoBehaviour
 
 #if UNITY_EDITOR
     public bool debug = false;
+    public float debugVisualHeight = 1.0f;
     private void OnDrawGizmos()
     {
         if (debug == false)
@@ -116,7 +118,7 @@ public class QuadMapUnit : MonoBehaviour
         float halfSize = node.Size / 2;
 
         Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(new Vector3(node.LeftX + halfSize, transform.position.y + 1.0f, 
+        Gizmos.DrawCube(new Vector3(node.LeftX + halfSize, transform.position.y + debugVisualHeight, 
             node.BottomZ + halfSize), new Vector3(node.Size, 0, node.Size));
 
         if (nNodes != null && nNodes.Count> 0)
@@ -125,7 +127,7 @@ public class QuadMapUnit : MonoBehaviour
             {
                 float nNodeHalfSize = nNode.Size / 2;
                 Gizmos.color = new Color(0, 1, 0, 1.0f);
-                Gizmos.DrawCube(new Vector3(nNode.LeftX + nNodeHalfSize, transform.position.y + 1.0f,
+                Gizmos.DrawCube(new Vector3(nNode.LeftX + nNodeHalfSize, transform.position.y + debugVisualHeight,
                     nNode.BottomZ + nNodeHalfSize), new Vector3(nNode.Size, 0, nNode.Size));
             }
         }

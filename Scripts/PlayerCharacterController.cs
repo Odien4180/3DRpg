@@ -22,6 +22,7 @@ public class PlayerCharacterController : MonoBehaviour, IHittable
 {    
     public CharacterController characterController;
     public QuadMapUnit quadMapUnit;
+    public CameraModule cameraModule;
 
     [Header("이동&회전")]
     public float walkSpeed = 2.0f;
@@ -98,16 +99,14 @@ public class PlayerCharacterController : MonoBehaviour, IHittable
 
         if (quadMapUnit == null)
             quadMapUnit = GetComponent<QuadMapUnit>();
+
+        if (cameraModule == null)
+            cameraModule = GetComponent<CameraModule>();
     }
 
-    private void Update()
+    public void Interaction()
     {
-        if (CCHGameManager.Instance.Input.interaction == true)
-        {
-            quadMapUnit.Interaction();
-
-            CCHGameManager.Instance.Input.interaction = false;
-        }
+        quadMapUnit?.Interaction();
     }
 
     public void OnFootStep()

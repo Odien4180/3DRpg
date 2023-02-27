@@ -33,7 +33,11 @@ public class Ability_Teleportation : AbilityBase
 
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            Time.timeScale = 0;
+            CameraManager.Instance.playerCameraModule.OnAim();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            CameraManager.Instance.playerCameraModule.OnMain();
         }
     }
 

@@ -2,6 +2,7 @@ using Cinemachine;
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using UniJSON;
 using UniRx;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -25,8 +26,15 @@ public class CCHGameManager : Singleton<CCHGameManager>
     [SerializeField] private PlayerInput playerInput;
     public PlayerInput PlayerInput => playerInput;
 
-    private void Start()
+    public Inventory inventory;
+
+    private new void Awake()
     {
+        base.Awake();
+
+        if(_input == null)
+            _input = GetComponent<FieldPlayerInput>();
+
         if (playerInput == null)
             playerInput = GetComponent<PlayerInput>();
     }
@@ -34,6 +42,11 @@ public class CCHGameManager : Singleton<CCHGameManager>
     public async UniTask LoadRootingItemView()
     {
         rootingItemView = await AddressableManager.Instance.InstantiateAddressableAsync<RootingItemView>("UI", "RootingItemUI.prefab");
+    }
+
+    public async UniTask LoadInventory()
+    {
+        inventory = await AddressableManager.Instance.InstantiateAddressableAsync<Inventory>("UI", "Inventory.prefab");
     }
 
     public async UniTask LoadCharacter()
@@ -60,6 +73,19 @@ public class CCHGameManager : Singleton<CCHGameManager>
 
     public void SwitchActionMap(string actionMapName)
     {
-        playerInput.SwitchCurrentActionMap(actionMapName);
+        PlayerInput.SwitchCurrentActionMap(actionMapName);
+    }
+
+    public void SetTimeScale(float scale)
+    {
+        Time.timeScale = scale;
+    }
+
+    public void PopInventory()
+    {
+        if (inventory == null)
+            return;
+
+        inventory.gameObject.SetActive(true);
     }
 }

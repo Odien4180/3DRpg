@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ConversationInput : MonoBehaviour
+public class UIInput : MonoBehaviour
 {
     public void OnPlay(InputValue value)
     {
         ConversationManager.Instance.Play();
+    }
+
+    public void OnUIRemove(InputValue value)
+    {
+        UIManager.Instance.RemoveLast();
     }
 }
