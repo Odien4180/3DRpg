@@ -147,37 +147,6 @@ public class AddressableManager : Singleton<AddressableManager>
         }
     }
 
-    public async UniTask LoadAll(string tag)
-    {
-        var downloadOperation = Addressables.DownloadDependenciesAsync("Must");
-        while (downloadOperation.IsDone == false)
-        {
-            Debug.Log("Download Must");
-            await UniTask.NextFrame();
-        }
-
-        downloadOperation = Addressables.DownloadDependenciesAsync("Conversation");
-        while (downloadOperation.IsDone == false)
-        {
-            Debug.Log("Download Conversation");
-            await UniTask.NextFrame();
-        }
-
-        var locations = await Addressables.LoadResourceLocationsAsync("Must");
-        await Addressables.LoadAssetsAsync<UnityEngine.Object>(locations, null);
-        
-        locations = await Addressables.LoadResourceLocationsAsync("Conversation");
-        var convAssets = await Addressables.LoadAssetsAsync<TextAsset>(locations, null);
-        
-        for (int i = 0; i < convAssets.Count; ++i)
-        {
-            Conversations.Clear();
-            Conversations.Add(convAssets[i].name, convAssets[i]);
-        }
-
-        SceneManager.LoadScene("TestScene");
-    }
-
     public async UniTask LoadConversations()
     {
         var locations = await Addressables.LoadResourceLocationsAsync("Conversation");
