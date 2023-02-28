@@ -1,5 +1,6 @@
 # 3DRPG에 활용 가능한 기능 구현
 3D RPG 장르에서 사용될 만한 클라이언트 기능들을 구현해보는 프로젝트입니다.
+지속적으로 업데이트 될 예정입니다(Last update : 23/03/01)
 
 1. [Object Pooling](#object-pooling) : 사용성을 위해 Addressable asset system과 결합시킨 오브젝트 풀링 기능 구현<br>
 2. [Quad Tree](#quad-tree) : 쿼드트리를 이용한 오브젝트 관리<br>
