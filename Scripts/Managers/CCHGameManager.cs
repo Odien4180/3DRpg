@@ -47,6 +47,7 @@ public class CCHGameManager : Singleton<CCHGameManager>
     public async UniTask LoadInventory()
     {
         inventory = await AddressableManager.Instance.InstantiateAddressableAsync<Inventory>("UI", "Inventory.prefab");
+        inventory.gameObject.SetActive(false);
     }
 
     public async UniTask LoadCharacter()

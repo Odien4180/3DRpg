@@ -21,7 +21,6 @@ public class QuadMapUnit : MonoBehaviour
     }
     public int debugDepth = -1;
 
-    private Vector3 lastFramePos = Vector3.zero;
     //인접 4방향 노드 검사
     private List<QuadNode> nNodes;
     public ReactiveProperty<QuadMapUnit> nearUnit = new ReactiveProperty<QuadMapUnit>();
@@ -39,20 +38,15 @@ public class QuadMapUnit : MonoBehaviour
                 return;
             }
         }
+
+        transform.ObserveEveryValueChanged(x => x.position).Subscribe(x => OnPositionChange()).AddTo(this);
     }
 
-    public void Update()
+    public void OnPositionChange()
     {
-        if (transform.position == lastFramePos)
-        {
-            return;
-        }
-
         node.MoveCheck(this, GetInstanceID(), transform.position, ref node);
 
         GetAllNeighbor();
-
-        lastFramePos = transform.position;
     }
 
     public void RemoveUnit()

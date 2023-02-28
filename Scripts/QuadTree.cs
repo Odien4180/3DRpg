@@ -242,7 +242,7 @@ public class QuadNode : IDisposable
 
             float dis = Vector3.Distance(unit.Value.transform.position, centerUnit.transform.position);
             
-            if (dis <= unit.Value.interactionModule.interactionDistance && dis < minDisData.Key)
+            if (dis <= unit.Value?.interactionModule?.interactionDistance && dis < minDisData.Key)
             {
                 minDisData = new KeyValuePair<float, QuadMapUnit>(dis, unit.Value);
             }
