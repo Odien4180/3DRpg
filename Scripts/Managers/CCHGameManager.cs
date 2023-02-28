@@ -18,7 +18,7 @@ public class CCHGameManager : Singleton<CCHGameManager>
     public CinemachineVirtualCamera virtualCam;
     public CinemachineBrain cinemachineBrain;
 
-    public RootingItemView rootingItemView;
+    public InteractionView rootingItemView;
 
     [SerializeField] private FieldPlayerInput _input;
     public FieldPlayerInput Input => _input;
@@ -41,7 +41,7 @@ public class CCHGameManager : Singleton<CCHGameManager>
 
     public async UniTask LoadRootingItemView()
     {
-        rootingItemView = await AddressableManager.Instance.InstantiateAddressableAsync<RootingItemView>("UI", "RootingItemUI.prefab");
+        rootingItemView = await AddressableManager.Instance.InstantiateAddressableAsync<InteractionView>("UI", "RootingItemUI.prefab");
     }
 
     public async UniTask LoadInventory()

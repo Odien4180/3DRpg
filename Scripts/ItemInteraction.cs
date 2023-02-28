@@ -8,6 +8,15 @@ public class ItemInteraction : InteractionBase
 {
     public UserItemData itemData;
 
+    public async UniTask Start()
+    {
+        if (interactionName == string.Empty)
+        {
+            var itemInfo = await ItemInfo.Get(itemData.itemId);
+            interactionName = itemInfo.name;
+        }
+    }
+
     public override void Interaction(QuadMapUnit unit)
     {
         AddItem(unit).Forget();

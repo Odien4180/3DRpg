@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RootingItemView : MonoBehaviour
+public class InteractionView : MonoBehaviour
 {
-    public RootItemDataView origin;
+    public InteractionPopUI origin;
 
     public GameObject searchingRoot;
 
-    private RootItemDataView current;
+    private InteractionPopUI current;
 
     public void Remove()
     {

@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class AddItemView : MonoBehaviour
 {
-    public RootItemDataView origin;
+    public InteractionPopUI origin;
 
     public GameObject addItemRoot;
     public float viewTime = 1.0f;
 
-    private RootItemDataView current;
+    private InteractionPopUI current;
 
     private IDisposable timer;
 
