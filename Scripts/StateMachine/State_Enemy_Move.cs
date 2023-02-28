@@ -43,6 +43,8 @@ public class State_Enemy_Move : CCHStateBase
 
         if (owner.rangeHitDatas.Count > 0)
         {
+            owner.agent.velocity = Vector3.zero;
+
             if (owner.currentDelay >= owner.attackDelay)
             {
                 owner.currentDelay = 0.0f;
@@ -53,6 +55,10 @@ public class State_Enemy_Move : CCHStateBase
         }
         else
         {
+            if (owner.inRange)
+            {
+                owner.agent.velocity = Vector3.zero;
+            }
             owner.agent.SetDestination(owner.Target.transform.position);
 
             return CCHStateMachine.EState.Move;

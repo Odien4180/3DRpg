@@ -46,6 +46,7 @@ public class EnemyBase : MonoBehaviour, IHittable
     [HideInInspector] public bool isCombat = false;
     [HideInInspector] public List<FovHitData> rangeHitDatas = new List<FovHitData>();
     [HideInInspector] public List<FovHitData> sightHitDatas = new List<FovHitData>();
+    [HideInInspector] public bool inRange = false;
     [HideInInspector] public FovHitData nearestFovHitData;
 
     [HideInInspector] public bool alive = true;

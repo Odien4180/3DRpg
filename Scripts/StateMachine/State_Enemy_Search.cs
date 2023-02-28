@@ -43,6 +43,7 @@ public class State_Enemy_Search : CCHStateBase
 
     public override CCHStateMachine.EState OnStateUpdate()
     {
+        owner.inRange = false;
         owner.sightHitDatas.Clear();
         owner.rangeHitDatas.Clear();
         owner.nearestFovHitData = null;
@@ -78,8 +79,9 @@ public class State_Enemy_Search : CCHStateBase
             float targetAngle = Mathf.Acos(Vector3.Dot(lookDir, targetDir)) * Mathf.Rad2Deg;
 
 
-            if (distance < owner.range)
+            if (distance <= owner.range)
             {
+                owner.inRange = true;
                 if (targetAngle <= owner.rangeAngle * 0.5f &&
                 Physics.Raycast(eyePos, targetDir, distance, owner.obstarcleMask, QueryTriggerInteraction.Ignore) == false)
                 {
