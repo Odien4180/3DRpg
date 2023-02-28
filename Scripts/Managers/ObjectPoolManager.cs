@@ -91,13 +91,12 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         if (!poolDic.TryGetValue(noExtensionName, out ObjectPool pool))
         {
             var resourcePath = await AddressableManager.Instance.GetResourcePath(type);
-            var loadAsset = Addressables.LoadAssetAsync<GameObject>(resourcePath + name);
-            await loadAsset;
+            var loadedAsset = await AddressableManager.Instance.LoadAssetAsync(resourcePath + name);
 
             if (poolDic.TryGetValue(noExtensionName, out ObjectPool poolSafe))
                 pool = poolSafe;
             else
-                pool = CreatePool(noExtensionName, loadAsset.Result, poolSize);
+                pool = CreatePool(noExtensionName, loadedAsset, poolSize);
         }
 
         var popItem = pool.Pop();
@@ -123,10 +122,8 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         if (!poolDic.TryGetValue(noExtensionName, out ObjectPool pool))
         {
             var resourcePath = await AddressableManager.Instance.GetResourcePath(type);
-            var loadAsset = Addressables.LoadAssetAsync<GameObject>(resourcePath + name);
-            await loadAsset;
-
-            pool = CreatePool(noExtensionName, loadAsset.Result, poolSize);
+            var loadedAsset = await AddressableManager.Instance.LoadAssetAsync(resourcePath + name);
+            pool = CreatePool(noExtensionName, loadedAsset, poolSize);
         }
         var popItem = pool.Pop(autoPushTimer);
         callback?.Invoke(popItem);
