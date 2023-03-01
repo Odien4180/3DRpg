@@ -67,9 +67,9 @@ public class AddressableManager : Singleton<AddressableManager>
         return string.Empty;
     }
 
-    public async UniTask<GameObject> LoadAssetAsync(string assetPath)
+    public async UniTask<T> LoadAssetAsync<T>(string assetPath)
     {
-        var loadAsset = Addressables.LoadAssetAsync<GameObject>(assetPath);
+        var loadAsset = Addressables.LoadAssetAsync<T>(assetPath);
         await loadAsset;
 
         return loadAsset.Result;

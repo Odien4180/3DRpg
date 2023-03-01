@@ -52,6 +52,7 @@ public class CCHGameManager : Singleton<CCHGameManager>
 
     public async UniTask LoadCharacter()
     {
+        //캐릭터 로드 추후 변경 (현재 임시)
         currentCharacter.Value = await AddressableManager.Instance.
             InstantiateAddressableAsync<PlayerCharacterController>("Character", "Kato/Kato.prefab");
          
@@ -64,6 +65,7 @@ public class CCHGameManager : Singleton<CCHGameManager>
         }
         currentCharacter.Value.transform.position = startPosition;
         
+        //장비 장착 추후 변경 (현재 임시)
         await EquipWeapon("SiFiSword");
     }
 
@@ -88,5 +90,6 @@ public class CCHGameManager : Singleton<CCHGameManager>
             return;
 
         inventory.gameObject.SetActive(true);
+        inventory.Initialize().Forget();
     }
 }

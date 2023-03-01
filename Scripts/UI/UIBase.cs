@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public abstract class UIBase : MonoBehaviour
 {
     [SerializeField] private bool managing = true;
-    public virtual void Initialize() { }
+    public virtual async UniTask Initialize() { }
 
     private void OnEnable()
     {
