@@ -1,5 +1,10 @@
 # 3DRPG에 활용 가능한 기능 구현
 3D RPG 장르에서 사용될 만한 클라이언트 기능들을 구현해보는 프로젝트입니다.
+지속적으로 업데이트 될 예정입니다<br>
+>Last update : 23/03/01
+<br>
+목차
+<br>
 
 1. [Object Pooling](#object-pooling) : 사용성을 위해 Addressable asset system과 결합시킨 오브젝트 풀링 기능 구현<br>
 2. [Quad Tree](#quad-tree) : 쿼드트리를 이용한 오브젝트 관리<br>
@@ -28,8 +33,8 @@ await ObjectPoolManager.Instance.Get<FloatingText>(Const.type_worldui, "DamageTe
   <p align="center">이미지 터치 시 유튜브 영상으로 이동합니다.</p>
 <a><br>
 
-유저와 상호작용 가능한 오브젝트들은 맵에 다수가 포함될수 있어, 동적으로 각각의 노드에 위치한 오브젝트의 숫자에 따라 동적으로 분할되는 쿼드트리를 통해 관리하였습니다.<br>
-QuadMapUnit 컴포넌트가 부착된 오브젝는 QuadTree에 의해 관리되며, InteractionBase를 상속받은 컴포넌트에 따라 상호작용 동작이 정의 됩니다.<br>
+유저와 상호작용 가능한 오브젝트들은 맵에 다수가 포함될 수 있어, 각각의 노드에 위치한 오브젝트의 숫자에 따라 동적으로 분할되는 쿼드트리를 통한 공간 파티션 방식으로 관리하였습니다.<br> 영상을 보시면 플레이어 캐릭터가 위치한 노드는 붉은색으로, 인접한 노드들은 초록색으로 표시되고 있습니다.<br>
+QuadMapUnit 컴포넌트가 부착된 오브젝트는 QuadTree에 의해 관리되며, InteractionBase를 상속받은 컴포넌트에 따라 상호작용 동작이 정의 됩니다.<br>
 	
 	
 >연관 클래스<br>
@@ -43,7 +48,8 @@ QuadMapUnit 컴포넌트가 부착된 오브젝는 QuadTree에 의해 관리되�
   <p align="center">이미지 터치 시 유튜브 영상으로 이동합니다.</p>
 <a><br>
 
-상호작용 동작에 관련 된 코드들로 아이템 루팅, NPC와의 대화를 구현했습니다.<br>
+상호작용 동작에 관련 된 기능으로 아이템 루팅, NPC와의 대화를 구현했습니다.<br>
+상호작용 가능한 오브젝트가 근처에 있을 땐 캐릭터의 우측에 상호작용 가능한 오브젝트의 정보가 표시되고, 아이템 획득시엔 화면 좌하단에 획득한 아이템 정보가 표시됩니다.<br>
 캐릭터가 이동할 때마다 QuadMapUnit의 nearUnit값이 수정되고, MVP패턴에 따라 해당 값을 구독하고 있는 InteractionPresenter가 InteractionView를 통해 인접해 있는 상호작용 가능한 오브젝트 정보를 표시해 주게 됩니다.<br>
 
 ```c#
