@@ -48,7 +48,7 @@ QuadMapUnit 컴포넌트가 부착된 오브젝트는 QuadTree에 의해 관리�
   <p align="center">이미지 터치 시 유튜브 영상으로 이동합니다.</p>
 <a><br>
 
-상호작용 동작에 관련 된 코드들로 아이템 루팅, NPC와의 대화를 구현했습니다.<br>
+상호작용 동작에 관련 된 기능으로 아이템 루팅, NPC와의 대화를 구현했습니다.<br>
 캐릭터가 이동할 때마다 QuadMapUnit의 nearUnit값이 수정되고, MVP패턴에 따라 해당 값을 구독하고 있는 InteractionPresenter가 InteractionView를 통해 인접해 있는 상호작용 가능한 오브젝트 정보를 표시해 주게 됩니다.<br>
 
 ```c#
