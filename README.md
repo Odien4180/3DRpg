@@ -1,18 +1,21 @@
 # 3DRPG에 활용 가능한 기능 구현
 3D RPG 장르에서 사용될 만한 클라이언트 기능들을 구현해보는 프로젝트입니다.
 지속적으로 업데이트 될 예정입니다<br>
->Last update : 23/03/01
+>Last update : 23/03/03
 <br>
 목차
 <br>
 
 1. [Object Pooling](#object-pooling) : 사용성을 위해 Addressable asset system과 결합시킨 오브젝트 풀링 기능 구현<br>
 2. [Quad Tree](#quad-tree) : 쿼드트리를 이용한 오브젝트 관리<br>
-3. [Interaction](#interaction) : Rx기반 상호작용(아이템 루팅, NPC와의 대화) 구현<br><br>
+3. [Interaction](#interaction) : Rx기반 상호작용(아이템 루팅, NPC와의 대화) 구현<br>
+4. [Inventory](#inventory) : 데코레이터 패턴을 활용한 인벤토리 UI 연출<br>
+<br>
 
 사용한 외부 라이브러리<br>
 + [UniRx](https://github.com/neuecc/UniRx)
 + [UniTesk](https://github.com/Cysharp/UniTask)
++ [DoTween](http://dotween.demigiant.com/)
 
 ## Object Pooling
 자주 사용하게 될 기능이니 최대한 사용하기 편하게 만드는 것에 중점을 두고 작성한 ObjectPooling 기능 입니다. 
@@ -92,3 +95,17 @@ public class InteractionPresenter : MonoBehaviour
 2. [InteractionView.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/UI/InteractionView.cs)<br>
 3. [InteractionPresenter.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/UI/InteractionPresenter.cs)<br>
 4. [InventoryManager.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/Managers/InventoryManager.cs)<br>
+
+## Interaction
+![Inventory](https://user-images.githubusercontent.com/53577237/222520823-36aaaa65-992d-4fdc-b106-32d50c7da0e8.gif)
+UIBase를 상속 받은 Inventory 컴포넌트에서 OnEnable 호출 시 UIManager를 통해 게임 일시정지 및 UI 조작용 Input Action Map으로 전환시킵니다.<br>
+데코레이터 패턴이 적용 된 PopUIModule 컴포넌트 부착 시 별도의 코드 추가 작업 없이 UI 오브젝트가 활성화 될 때 간단한 이동, 알파값 변환 효과를 줄 수 있습니다.<br>
+인벤토리에는 짧은 알파값 변환 효과, 아이템 아이콘에는 이동 및 알파값 변환 효과를 적용 시켰습니다.<br>
+
+>연관 클래스<br>
+1. [PopUIModule.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/UI/PopUIModule.cs)<br>
+2. [Inventory.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/UI/Inventory.cs)<br>
+3. [ItemProfilePresenter.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/UI/ItemProfilePresenter.cs)<br>
+4. [ItemProfileView.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/UI/ItemProfileView.cs)<br>
+5. [UIManager.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/Managers/UIManager.cs)<br>
+6. [UIBase.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/UI/UIBase.cs)<br>
