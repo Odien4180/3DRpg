@@ -99,7 +99,7 @@ public class InteractionPresenter : MonoBehaviour
 ## Inventory
 ![Inventory](https://user-images.githubusercontent.com/53577237/222520823-36aaaa65-992d-4fdc-b106-32d50c7da0e8.gif)
 UIBase를 상속 받은 컴포넌트가 활성화 되있을 경우 UIManager를 통해 게임 일시정지, 마우스 커서 활성화 및 UI 조작용 Input Action Map으로 전환시킵니다.<br>
-여기선 UIBase를 상속 받은 Inventory가 활성화 될 때 앞서 설명한 효과들이 적용 되고 있습니다.
+여기선 UIBase를 상속 받은 Inventory가 활성화 될 때 앞서 설명한 효과들이 적용 되고 있습니다.<br>
 데코레이터 패턴이 적용 된 PopUIModule 컴포넌트 부착 시 별도의 코드 추가 작업 없이 UI 오브젝트가 활성화 될 때 간단한 이동, 알파값 변환 효과를 줄 수 있습니다.<br>
 인벤토리에는 짧은 알파값 변환 효과, 아이템 아이콘에는 이동 및 알파값 변환 효과를 적용 시켰습니다.<br>
 
