@@ -9,5 +9,5 @@ public class ItemProfileView : MonoBehaviour
     public Image frameImage;
     public Image iconImage;
     public TextMeshProUGUI countText;
-
+    public Button button;
 }

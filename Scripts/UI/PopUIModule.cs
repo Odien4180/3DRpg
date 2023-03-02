@@ -41,7 +41,7 @@ public class PopUIModule : MonoBehaviour
         if (doMove)
         {
             translateTween?.Kill();
-            rt.localPosition = originPos + translate;
+            rt.anchoredPosition = originPos + translate;
             translateTween = rt.DOAnchorPos(originPos, translateTime).SetUpdate(true).SetEase(translateEase);
         }
 
@@ -49,7 +49,7 @@ public class PopUIModule : MonoBehaviour
         {
             alphaTween?.Kill();
             canvasGroup.alpha = alpha;
-            canvasGroup.DOFade(originAlpha, alphaTime).SetUpdate(true).SetEase(alphaEase);
+            alphaTween = canvasGroup.DOFade(originAlpha, alphaTime).SetUpdate(true).SetEase(alphaEase);
         }
     }
 }

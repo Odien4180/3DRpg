@@ -75,7 +75,7 @@ public class InventoryManager : Singleton<InventoryManager>
         var inventoryData = Resources.Load<TempInventoryData>("Temp Inventory Data");
         foreach (var data in inventoryData.dataList)
         {
-            equipInventory.Add(data.userItemId, data);
+            Add(data).Forget();
         }
 
     }
