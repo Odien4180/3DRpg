@@ -96,7 +96,7 @@ public class InteractionPresenter : MonoBehaviour
 3. [InteractionPresenter.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/UI/InteractionPresenter.cs)<br>
 4. [InventoryManager.cs](https://github.com/Odien4180/3DRpg/blob/master/Scripts/Managers/InventoryManager.cs)<br>
 
-## Interaction
+## Inventory
 ![Inventory](https://user-images.githubusercontent.com/53577237/222520823-36aaaa65-992d-4fdc-b106-32d50c7da0e8.gif)
 UIBase를 상속 받은 Inventory 컴포넌트에서 OnEnable 호출 시 UIManager를 통해 게임 일시정지 및 UI 조작용 Input Action Map으로 전환시킵니다.<br>
 데코레이터 패턴이 적용 된 PopUIModule 컴포넌트 부착 시 별도의 코드 추가 작업 없이 UI 오브젝트가 활성화 될 때 간단한 이동, 알파값 변환 효과를 줄 수 있습니다.<br>
