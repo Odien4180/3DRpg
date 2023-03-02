@@ -36,9 +36,7 @@ public class Inventory : UIBase
             {
                 itemList.Add(Instantiate(originItemProfile, content.transform));
             }
-            //itemList[i].gameObject.SetActive(false);
-            //await itemList[i].Initialize(inventory[i].Value);
-            //itemList[i].gameObject.SetActive(true);
+
             tasks.Add(itemList[i].Initialize(inventory[i].Value, false));
         }
 
