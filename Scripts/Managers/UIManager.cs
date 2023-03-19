@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,8 @@ using UnityEngine;
 public class UIManager : Singleton<UIManager>
 {
     private ReactiveCollection<UIBase> uiCollection = new ReactiveCollection<UIBase>();
+    private GameObject uiBlur;
+
     private new void Awake()
     {
         base.Awake();
@@ -18,12 +21,41 @@ public class UIManager : Singleton<UIManager>
         });
     }
 
+    private async UniTask AddBlur()
+    {
+        if (uiBlur == null)
+        {
+            await AddressableManager.Instance.InstantiateAddressableAsync("UI", "Blur.prefab", x =>
+            {
+                if (uiBlur != null)
+                {
+                    Destroy(x);
+                }
+                else
+                {
+                    uiBlur = x;
+                }
+            });
+        }
+
+        if (uiCollection.Count > 0)
+            uiBlur.SetActive(true);
+    }
+
+    private void RemoveBlur()
+    {
+        if (uiBlur != null)
+            uiBlur.gameObject.SetActive(false);
+    }
+
     public void Add(UIBase item)
     {
         if (uiCollection.Contains(item))
             return;
 
         uiCollection.Add(item);
+        
+        AddBlur().Forget();
     }
 
     public void Remove(UIBase item)
@@ -32,6 +64,9 @@ public class UIManager : Singleton<UIManager>
             return;
 
         uiCollection.Remove(item);
+
+        if (uiCollection.Count == 0)
+            RemoveBlur();
     }
 
     public void RemoveLast()
